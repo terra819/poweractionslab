@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <EntityRelationship Name="business_unit_iris_product" />
+  <EntityRelationship Name="iris_product_ReviewedBy_systemuser" />
+  <EntityRelationship Name="lk_iris_product_createdby" />
+  <EntityRelationship Name="lk_iris_product_modifiedby" />
+  <EntityRelationship Name="owner_iris_product" />
+  <EntityRelationship Name="team_iris_product" />
+  <EntityRelationship Name="user_iris_product" />
+</EntityRelationships>
