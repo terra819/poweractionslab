@@ -1,0 +1,232 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "iris_sharedcommondataserviceforapps_3e3fe"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_approvals": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "iris_sharedapprovals_fac4e"
+        },
+        "api": {
+          "name": "shared_approvals"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "Base Url (iris_BaseUrl)": {
+          "defaultValue": "https://orgdf432891.crm.dynamics.com/",
+          "type": "String",
+          "metadata": {
+            "schemaName": "iris_BaseUrl"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "splitOn": "@triggerBody()['rows']",
+          "metadata": {
+            "operationMetadataId": "c9512dee-a04b-42d7-8179-b0902252b89d"
+          },
+          "type": "Request",
+          "kind": "ApiConnection",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "rows": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "entity": {
+                        "type": "object",
+                        "properties": {
+                          "entity": {
+                            "type": "object",
+                            "properties": {
+                              "BPFFlowStageLocalizedName": {
+                                "title": "BPF Flow Stage Localized Name",
+                                "type": "string"
+                              },
+                              "BPFFlowStageEntityRecordId": {
+                                "title": "BPF Flow Stage Table Row Id",
+                                "type": "string"
+                              },
+                              "BPFActiveStageEntityName": {
+                                "title": "BPF Active Stage Table Name",
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "entity"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "entity"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "rows"
+              ]
+            },
+            "host": {
+              "connection": {
+                "name": "@parameters('$connections')['shared_commondataserviceforapps']['connectionId']"
+              }
+            },
+            "operationId": "FlowStepRun",
+            "parameters": {},
+            "headersSchema": {
+              "x-ms-user-email-encoded": {
+                "title": "User email",
+                "type": "string",
+                "format": "byte",
+                "x-ms-dynamically-added": false
+              }
+            }
+          }
+        }
+      },
+      "actions": {
+        "Start_and_wait_for_an_approval": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "fffaa60d-2cf0-4b44-a70b-0b235e4b3aba"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_approvals",
+              "operationId": "StartAndWaitForAnApproval",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_approvals"
+            },
+            "parameters": {
+              "approvalType": "Basic",
+              "WebhookApprovalCreationInput/title": "@triggerBody()?['entity']?['entity']?['BPFFlowStageLocalizedName']",
+              "WebhookApprovalCreationInput/assignedTo": "admin@M365x78756280.onmicrosoft.com;",
+              "WebhookApprovalCreationInput/itemLink": "@{parameters('Base Url (iris_BaseUrl)')}main.aspx?appid=8bed3949-f645-ef11-a316-6045bd047462&forceUCI=1&pagetype=entityrecord&etn=iris_product&id=@{triggerBody()?['entity']?['entity']?['BPFFlowStageEntityRecordId']}",
+              "WebhookApprovalCreationInput/itemLinkDescription": "@triggerBody()?['entity']?['entity']?['BPFActiveStageEntityName']",
+              "WebhookApprovalCreationInput/enableNotifications": true,
+              "WebhookApprovalCreationInput/enableReassignment": true
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('Start_and_wait_for_an_approval')?['body/responses']",
+          "actions": {
+            "Condition": {
+              "actions": {
+                "Update_to_approved": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "f1d24bf9-2191-4ac5-aab2-eb26711d11e6"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "iris_products",
+                      "recordId": "@triggerBody()?['entity']?['entity']?['BPFFlowStageEntityRecordId']",
+                      "item/iris_approvaldate": "@outputs('Start_and_wait_for_an_approval')?['body/completionDate']",
+                      "item/iris_approvalstatus": 158910000,
+                      "item/iris_published": true,
+                      "item/iris_ReviewedBy@odata.bind": "@items('Apply_to_each')?['responder/id']"
+                    },
+                    "authentication": {
+                      "type": "Raw",
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                    }
+                  }
+                }
+              },
+              "runAfter": {},
+              "else": {
+                "actions": {
+                  "Update_to_rejected": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "f1d24bf9-2191-4ac5-aab2-eb26711d11e6"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps",
+                        "operationId": "UpdateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "iris_products",
+                        "recordId": "@triggerBody()?['entity']?['entity']?['BPFFlowStageEntityRecordId']",
+                        "item/iris_approvaldate": "@outputs('Start_and_wait_for_an_approval')?['body/completionDate']",
+                        "item/iris_approvalstatus": 158910001,
+                        "item/iris_ReviewedBy@odata.bind": "@items('Apply_to_each')?['responder/id']"
+                      },
+                      "authentication": {
+                        "type": "Raw",
+                        "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                      }
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@items('Apply_to_each')?['approverResponse']",
+                  "Approve"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "36693b95-4c50-4606-be28-a44c548d6304"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Start_and_wait_for_an_approval": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6efb0a92-05d2-4edb-ba07-8ee2f9c1a79a"
+          },
+          "type": "Foreach"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
