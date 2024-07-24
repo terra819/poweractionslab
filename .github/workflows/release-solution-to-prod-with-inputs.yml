@@ -12,7 +12,8 @@ on:
         description: 'The solution name.'
         type: string
         default: IRISPOC 
-
+permissions:
+  contents: write
 jobs:
   convert-to-managed:
     environment: iris-poc-dev
