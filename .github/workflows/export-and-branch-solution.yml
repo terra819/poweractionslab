@@ -10,19 +10,6 @@ on:
         description: 'name of the solution to worked on from Power Platform'
         required: true
         default: IRISPOC
-       #Do Not change these values
-      solution_exported_folder:
-        description: 'folder name for staging the exported solution *do not change*'
-        required: true
-        default: out/exported/
-      solution_folder:
-        description: 'staging the unpacked solution folder before check-in *do not change*'
-        required: true
-        default: out/solutions/
-      solution_target_folder: 
-       description: 'folder name to be created and checked in *do not change*'
-       required: true
-       default: solutions/
 permissions:
   contents: write
 jobs:  
@@ -55,20 +42,20 @@ jobs:
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANTID}}
         solution-name: ${{ github.event.inputs.solution_name }}
-        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
+        solution-output-file: out/exported/${{ github.event.inputs.solution_name }}.zip
 
     - name: unpack-solution action
       uses: microsoft/powerplatform-actions/unpack-solution@v0
       with:
-        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
-        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
+        solution-file: out/exported/${{ github.event.inputs.solution_name }}.zip
+        solution-folder: out/solutions/${{ github.event.inputs.solution_name }}
         solution-type: 'Unmanaged'
         overwrite-files: true
 
     - name: branch-solution, prepare it for a PullRequest
       uses: microsoft/powerplatform-actions/branch-solution@v0
       with:
-        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
-        solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_name }}
+        solution-folder: out/solutions/${{ github.event.inputs.solution_name }}
+        solution-target-folder: solutions/${{ github.event.inputs.solution_name }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         allow-empty-commit: true
