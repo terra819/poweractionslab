@@ -42,7 +42,7 @@ jobs:
       uses: microsoft/powerplatform-actions/who-am-i@v0
       with:
         environment-url: ${{vars.URL}}
-        app-id: ${{vars.CLIENT_ID}}
+        app-id: ${{vars.CLIENTID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANTID}}
 
@@ -51,7 +51,7 @@ jobs:
       uses: microsoft/powerplatform-actions/export-solution@v0
       with:
         environment-url: ${{vars.URL}}
-        app-id: ${{vars.CLIENT_ID}}
+        app-id: ${{vars.CLIENTID}}
         client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANTID}}
         solution-name: ${{ github.event.inputs.solution_name }}
