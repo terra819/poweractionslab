@@ -3,15 +3,23 @@ name: release-solution-to-prod-reusable
 # convert solution to managed (using a build PowerPlatform environment for the conversion)
 # upload the solution to the GitHub artifacts and deploy to the PROD environment
 on:
-  workflow_call:
-    inputs: 
-      #Do Not change these values
-      #Values are set by the caller
-      #caller sample: release-action-call.ymnl
+  release:
+      types: [created]   
+      inputs:
+      # Change this value
       solution_name:
-        description: 'The solution name.'
-        type: string
-        default: IRISPOC 
+        description: 'name of the solution to worked on from Power Platform'
+        required: true
+        default: IRISPOC
+  workflow_dispatch:
+    inputs:
+      # Change this value
+      solution_name:
+        description: 'name of the solution to worked on from Power Platform'
+        required: true
+        default: IRISPOC
+permissions:
+  contents: write
 jobs:
   convert-to-managed:
     environment: iris-poc-dev
