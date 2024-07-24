@@ -49,7 +49,7 @@ jobs:
       with:
         environment-url: ${{vars.URL}}
         app-id: ${{vars.CLIENTID}}
-        client-secret: ${{ secrets.PowerPlatformSPN }} 
+        client-secret: ${{ secrets.PowerPlatformSPN }}
         tenant-id: ${{vars.TENANTID}}
         solution-name: ${{ inputs.solution_name }}
         managed: true
