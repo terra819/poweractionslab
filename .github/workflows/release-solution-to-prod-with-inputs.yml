@@ -26,6 +26,14 @@ jobs:
       with:
         lfs: true
 
+    - name: who-am-i action
+      uses: microsoft/powerplatform-actions/who-am-i@v0
+      with:
+        environment-url: ${{vars.URL}}
+        app-id: ${{vars.CLIENTID}}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: ${{vars.TENANTID}}
+
     - name: Pack solution
       uses: microsoft/powerplatform-actions/pack-solution@v0
       with:
@@ -72,6 +80,14 @@ jobs:
     - uses: actions/checkout@v2
       with:
         lfs: true
+
+    - name: who-am-i action
+      uses: microsoft/powerplatform-actions/who-am-i@v0
+      with:
+        environment-url: ${{vars.URL}}
+        app-id: ${{vars.CLIENTID}}
+        client-secret: ${{ secrets.PowerPlatformSPN }}
+        tenant-id: ${{vars.TENANTID}}
 
     - name: Fetch the ready to ship solution from GH artifact store
       uses: actions/download-artifact@v2
