@@ -1,0 +1,22 @@
+name: Release action
+# Call the reusable workflow release-solution-with-inputs.yml
+# Release your solution to prod when you create a new release.
+
+on:
+  release:
+      types: [created]        
+permissions:
+  contents: write
+jobs:
+  Release-solution-ALMLab:
+    uses: ./.github/workflows/release-solution-to-prod-with-inputs.yml
+    with:
+      #You can specify the solution name here
+      solution_name: IRISPOC
+      #Update your values here
+      BUILD_ENVIRONMENT_URL: https://orgdf432891.crm.dynamics.com
+      PRODUCTION_ENVIRONMENT_URL: https://org91178c44.crm.dynamics.com
+      CLIENT_ID: bb93eaa8-b9d3-4888-8a18-27f324707478
+      TENANT_ID: 7687313d-2aa3-4d92-87ce-6bfad84a5f9f      
+    secrets:
+      envSecret: ${{ secrets.PowerPlatformSPN }}
