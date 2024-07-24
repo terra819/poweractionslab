@@ -25,9 +25,9 @@ on:
        default: solutions/
 permissions:
   contents: write
-jobs:
-  environment: 'iris-poc-dev'
+jobs:  
   export-from-dev:
+    environment: iris-poc-dev
     runs-on: windows-latest
     # or you can say runs-on: ubuntu-latest
     env:
