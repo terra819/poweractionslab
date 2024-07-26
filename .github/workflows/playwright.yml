@@ -17,7 +17,7 @@ jobs:
     - name: create env file
       run: |
         touch .env
-        echo USER_ID=${{ secrets.USER_ID }} >> .env
+        echo USER_ID=${{ vars.USER_ID }} >> .env
         echo USER_PASSWORD=${{ secrets.USER_PASSWORD }} >> .env
     - name: Install dependencies
       run: npm ci
