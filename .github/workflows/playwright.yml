@@ -16,10 +16,9 @@ jobs:
         node-version: 18
     - name: create env file
       run: |
-        touch .env
-        source /etc/environment
+        touch .env'
         echo USER_ID=${{ vars.USER_ID }} >> .env
-        echo USER_PASSWORD=${{ secrets.USER_PASSWORD }} >> .env
+        echo USER_PASSWORD='${{ secrets.USER_PASSWORD }}'' >> .env
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
