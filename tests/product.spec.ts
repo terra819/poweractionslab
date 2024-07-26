@@ -13,6 +13,7 @@ test('can create product', async ({ page }) => {
     console.log(randomAbstract);
     console.log(randomDOI);
     console.log(username);
+    console.log(password);
 
     // login
     await page.goto('https://login.microsoftonline.com/7687313d-2aa3-4d92-87ce-6bfad84a5f9f/oauth2/authorize?client_id=00000007-0000-0000-c000-000000000000&response_type=code%20id_token&scope=openid%20profile&state=OpenIdConnect.AuthenticationProperties%3DMAAAAGWk5ehBgBHvjksADTqOFvtJL3LN8VQ63DFFECGDN_yBelF2puL3LlLYOQUaFQenjwEAAAABAAAACS5yZWRpcmVjdFlodHRwczovL29yZ2RmNDMyODkxLmNybS5keW5hbWljcy5jb20vbWFpbi5hc3B4P2FwcGlkPThiZWQzOTQ5LWY2NDUtZWYxMS1hMzE2LTYwNDViZDA0NzQ2Mg%26RedirectTo%3DMAAAAGWk5ehBgBHvjksADTqOFvtYN6K2KAOU7nqsGXHH%252bMV1JeoXVL6rjg9Ao5WvNHWCM2h0dHBzOi8vb3JnZGY0MzI4OTEuY3JtLmR5bmFtaWNzLmNvbS8%253d%26RedirectToForMcas%3Dhttps%253a%252f%252forgdf432891.crm.dynamics.com%252fmain.aspx%253fappid%253d8bed3949-f645-ef11-a316-6045bd047462&response_mode=form_post&nonce=638575289284249704.NGMxMzE2M2ItYjVkYS00ZGRhLWE0YWUtNDQ2NjE3MjY0OGIzNDEwZWYyMzktNzdlMS00NDgxLWE0NzMtYzIwMWE0YzRiMWI4&redirect_uri=https%3A%2F%2Fby2--namcrmlivesg741.crm.dynamics.com%2F&max_age=86400&x-client-SKU=ID_NET472&x-client-ver=7.5.0.0');
