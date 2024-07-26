@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{54218419-519d-4134-a3a1-abb60d761044}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{4ce593f8-2da7-430a-8276-bd4f1105fdff}" name="StageStep3" locklevel="0" expanded="true" visible="false" labelid="{a2ca1e59-89e4-4937-a7f4-ebc45c5bde41}">
+          <labels>
+            <label description="New Stage" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showbar="false" columns="1" id="{4a09cc63-d21a-4a53-631b-73804e80b135}" name="StageStep3_section1" labelid="{524f99d5-100a-40a0-b97d-a81473554499}">
+                  <labels>
+                    <label description="New Stage" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{59c7c9ea-8daf-4fed-a2d5-abc38dd00ae4}" showlabel="true" visible="true" labelid="{dc0cad43-e22d-4be2-b778-d9e473d70f96}">
+                        <labels>
+                          <label description="DOI" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_iris_product_iris_newproductflow:iris_doi" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="iris_doi" disabled="false" relationship="bpf_iris_product_iris_newproductflow" isrequired="true" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab verticallayout="true" id="{8c781884-3eda-44e1-bdc0-ef40d85a4c44}" name="StageStep7" locklevel="0" expanded="true" visible="false" labelid="{23146ebb-1e02-4ab9-9d53-13aa0c01cd7d}">
+          <labels>
+            <label description="Title Stage" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showbar="false" columns="1" id="{4dbbf5ad-e0e3-52a1-8aa0-3c2ba7694418}" name="StageStep7_section1" labelid="{bc00036c-f367-4600-b8d2-8844f8012f0a}">
+                  <labels>
+                    <label description="Title Stage" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{c9b3378b-0d56-43da-a203-23d7e5b0adcb}" showlabel="true" visible="true" labelid="{e2a80937-0287-4b6d-bf05-54947976041b}">
+                        <labels>
+                          <label description="Title" languagecode="1033" />
+                        </labels>
+                        <control id="bpf_iris_product_iris_newproductflow:iris_title" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="iris_title" disabled="false" relationship="bpf_iris_product_iris_newproductflow" isrequired="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
