@@ -18,7 +18,7 @@ test('can create product', async ({ page }) => {
     await page.getByPlaceholder('Email, phone, or Skype').fill(username);
     await page.getByRole('button', { name: 'Next' }).click();
     await page.getByPlaceholder('Password').click();
-    await page.getByPlaceholder('Password').fill('q+#39+tTz7Y81I+l^N');
+    await page.getByPlaceholder('Password').fill(password);
     await page.getByRole('button', { name: 'Sign in' }).click();
     await page.getByRole('button', { name: 'Yes' }).click();
     await page.goto('https://orgdf432891.crm.dynamics.com/main.aspx?appid=8bed3949-f645-ef11-a316-6045bd047462');
