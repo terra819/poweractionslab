@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Workflow WorkflowId="{50ed125a-854b-ef11-a317-6045bd047462}" Name="new product flow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <XamlFileName>/Workflows/newproductflow-50ED125A-854B-EF11-A317-6045BD047462.xaml</XamlFileName>
+  <Type>1</Type>
+  <Subprocess>0</Subprocess>
+  <Category>4</Category>
+  <Mode>0</Mode>
+  <Scope>4</Scope>
+  <OnDemand>0</OnDemand>
+  <TriggerOnCreate>1</TriggerOnCreate>
+  <TriggerOnDelete>0</TriggerOnDelete>
+  <AsyncAutodelete>0</AsyncAutodelete>
+  <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+  <StateCode>1</StateCode>
+  <StatusCode>2</StatusCode>
+  <processorder>100</processorder>
+  <RunAs>1</RunAs>
+  <UniqueName>iris_newproductflow</UniqueName>
+  <IsTransacted>1</IsTransacted>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
+  <IsCustomizable>1</IsCustomizable>
+  <BusinessProcessType>0</BusinessProcessType>
+  <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+  <ProcessTriggerScope>1</ProcessTriggerScope>
+  <PrimaryEntity>iris_Product</PrimaryEntity>
+  <LocalizedNames>
+    <LocalizedName languagecode="1033" description="new product flow" />
+  </LocalizedNames>
+  <labels>
+    <steplabels id="{4ce593f8-2da7-430a-8276-bd4f1105fdff}">
+      <label languagecode="1033" description="New Stage" />
+    </steplabels>
+    <steplabels id="{59c7c9ea-8daf-4fed-a2d5-abc38dd00ae4}">
+      <label languagecode="1033" description="DOI" />
+    </steplabels>
+    <steplabels id="{8c781884-3eda-44e1-bdc0-ef40d85a4c44}">
+      <label languagecode="1033" description="Title Stage" />
+    </steplabels>
+    <steplabels id="{c9b3378b-0d56-43da-a203-23d7e5b0adcb}">
+      <label languagecode="1033" description="Title" />
+    </steplabels>
+  </labels>
+</Workflow>

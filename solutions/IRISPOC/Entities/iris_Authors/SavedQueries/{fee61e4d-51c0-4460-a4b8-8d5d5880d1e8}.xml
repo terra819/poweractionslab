@@ -5,13 +5,12 @@
     <CanBeDeleted>0</CanBeDeleted>
     <isquickfindquery>0</isquickfindquery>
     <isprivate>0</isprivate>
-    <isdefault>1</isdefault>
-    <savedqueryid>{a26b824d-924b-47f3-9448-8240a329d3ff}</savedqueryid>
+    <isdefault>0</isdefault>
+    <savedqueryid>{fee61e4d-51c0-4460-a4b8-8d5d5880d1e8}</savedqueryid>
     <layoutxml>
       <grid name="resultset" jump="iris_name" select="1" icon="1" preview="1">
-        <row name="result" id="iris_productid">
-          <cell name="iris_name" width="107" />
-          <cell name="iris_title" width="300" />
+        <row name="result" id="iris_authorsid">
+          <cell name="iris_name" width="300" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -19,21 +18,20 @@
     <querytype>0</querytype>
     <fetchxml>
       <fetch version="1.0" mapping="logical">
-        <entity name="iris_product">
-          <attribute name="iris_productid" />
+        <entity name="iris_authors">
+          <attribute name="iris_authorsid" />
           <attribute name="iris_name" />
           <attribute name="createdon" />
           <order attribute="iris_name" descending="false" />
           <filter type="and">
-            <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="statecode" operator="eq" value="1" />
           </filter>
-          <attribute name="iris_title" />
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Active Products" languagecode="1033" />
+      <LocalizedName description="Inactive Authors" languagecode="1033" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

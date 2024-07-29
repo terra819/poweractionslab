@@ -3,37 +3,38 @@
   <savedquery>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>0</CanBeDeleted>
-    <isquickfindquery>0</isquickfindquery>
+    <isquickfindquery>1</isquickfindquery>
     <isprivate>0</isprivate>
     <isdefault>1</isdefault>
-    <savedqueryid>{a26b824d-924b-47f3-9448-8240a329d3ff}</savedqueryid>
+    <savedqueryid>{2803bc03-39cf-43b0-8ff4-67c643c0535b}</savedqueryid>
     <layoutxml>
       <grid name="resultset" jump="iris_name" select="1" icon="1" preview="1">
-        <row name="result" id="iris_productid">
-          <cell name="iris_name" width="107" />
-          <cell name="iris_title" width="300" />
+        <row name="result" id="iris_authorsid">
+          <cell name="iris_name" width="300" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
     </layoutxml>
-    <querytype>0</querytype>
+    <querytype>4</querytype>
     <fetchxml>
       <fetch version="1.0" mapping="logical">
-        <entity name="iris_product">
-          <attribute name="iris_productid" />
+        <entity name="iris_authors">
+          <attribute name="iris_authorsid" />
           <attribute name="iris_name" />
           <attribute name="createdon" />
           <order attribute="iris_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <attribute name="iris_title" />
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="iris_name" operator="like" value="{0}" />
+          </filter>
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Active Products" languagecode="1033" />
+      <LocalizedName description="Quick Find Active Authors" languagecode="1033" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>
